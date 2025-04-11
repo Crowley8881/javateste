@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Salário</title>
+</head>
+
+<body>
+    <h2>Insira o seu salário</h2>
+
+    <input type="number" id="celsus" placeholder="Digite uma temperatura">
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultado" style="margin-top: 15px; font-weight: bold;"></div>
+
+    <script>
+        function calcular() {
+            
+            const celsus = parseFloat(document.getElementById('celsus').value);
+            
+            
+            const farenfds = (celsus  * 1.80)+32;
+            
+            document.getElementById('resultado').innerHTML = 
+                `celsus  ${celsus.toFixed(2)}<br>
+                 fareheinfds ${farenfds.toFixed(2)}`;
+        }
+    </script>
+</body>
+
+</html>

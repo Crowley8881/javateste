@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Círculo</title>
+</head>
+
+<body>
+    <h2>Insira o raio do círculo</h2>
+    
+    <label for="raio">Digite o raio:</label>
+    <input type="number" id="raio" placeholder="Raio" step="any">
+    
+    <br><br>
+    
+    <button onclick="calcularMedidas()">Calcular medidas</button>
+
+    <div id="resultado" style="margin-top: 15px; font-weight: bold;"></div>
+
+    <script>
+        function calcularMedidas() {
+            
+            const raio = parseFloat(document.getElementById('raio').value);
+            
+        
+            
+            const comprimento = 2 * Math.PI * raio;
+            const area = Math.PI * Math.pow(raio, 2);
+            const volume = (4/3) * Math.PI * Math.pow(raio, 3); 
+            
+            
+            document.getElementById('resultado').innerHTML = 
+                `Para um círculo com raio ${raio}:<br>
+                 - Comprimento da circunferência: ${comprimento.toFixed(2)}<br>
+                 - Área do círculo: ${area.toFixed(2)}<br>
+                 - Volume da esfera: ${volume.toFixed(2)}`;
+        }
+    </script>
+</body>
+
+</html>

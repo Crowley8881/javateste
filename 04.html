@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Salário</title>
+</head>
+
+<body>
+    <h2>Insira o seu salário</h2>
+
+    <input type="number" id="n1" placeholder="digite nota 1">
+    <input type="number" id="n2" placeholder="digite nota 2">
+    <input type="number" id="n3" placeholder="digite nota 3">
+
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultado" style="margin-top: 15px; font-weight: bold;"></div>
+
+    <script>
+        function calcular() {
+            
+            const n1 = parseFloat(document.getElementById('n1').value);
+            const n2 = parseFloat(document.getElementById('n2').value);
+            const n3 = parseFloat(document.getElementById('n3').value);
+        
+
+            const media = (n1 +n2+n3)/ 3;
+
+
+            
+            
+            
+            document.getElementById('resultado').innerHTML = 
+                `media  ${media.toFixed(2)}<br>
+                 nota1 ${n1.toFixed(2)}<br>
+                 nota1 ${n2.toFixed(2)}<br>
+                 nota1 ${n3.toFixed(2)}<br>`;
+        }
+    </script>
+</body>
+
+</html>
