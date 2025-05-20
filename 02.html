@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Calculadora de Salário</title>
+  <meta charset="UTF-8">
+  <title>Função por Partes - f(x)</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, button { margin: 5px; }
+    .resultado { margin-top: 20px; font-weight: bold; }
+  </style>
 </head>
-
 <body>
-    <h2>Insira o seu salário</h2>
+  <h2>Parte 10 - Calcular f(x)</h2>
+  <p>Função definida por partes:</p>
+  <pre>
+f(x) = {
+  2x + 2,   se x < -2
+  3,        se -2 ≤ x < 3
+  -x,       se x ≥ 3
+  }</pre>
 
-    <input type="number" id="salario" placeholder="Digite seu salário">
-    <button onclick="calcular()">Calcular</button>
+  <label>Digite o valor de x: <input type="number" id="xValor"></label>
+  <button onclick="calcularFuncao()">Calcular f(x)</button>
 
-    <div id="resultado" style="margin-top: 15px; font-weight: bold;"></div>
+  <div class="resultado" id="resultadoFuncao"></div>
 
-    <script>
-        function calcular() {
-            const salario = parseFloat(document.getElementById('salario').value);
-            
-            if (isNaN(salario) || salario <= 0) {
-                alert("Por favor, insira um valor válido para o salário!");
-                return;
-            }
-            
-            const nsalario = salario * 1.25;
-            
-            
-            document.getElementById('resultado').innerHTML = 
-                `Salário atual: R$ ${salario.toFixed(2)}<br>
-                 Salário com aumento (25%): R$ ${nsalario.toFixed(2)}`;
-        }
-    </script>
+  <script>
+    function calcularFuncao() {
+      const x = parseFloat(document.getElementById('xValor').value);
+      const res = document.getElementById('resultadoFuncao');
+      let fx;
+
+      if (x < -2) {
+        fx = 2 * x + 2;
+      } else if (x >= -2 && x < 3) {
+        fx = 3;
+      } else if (x >= 3) {
+        fx = -x;
+      }
+
+      res.textContent = `f(${x}) = ${fx}`;
+    }
+  </script>
 </body>
-
 </html>

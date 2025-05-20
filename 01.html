@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Calculadora de Idade</title>
+  <meta charset="UTF-8">
+  <title>Equação do 2º Grau</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input { margin: 5px; }
+    .resultado { margin-top: 20px; font-weight: bold; }
+  </style>
 </head>
-
 <body>
-    <h2>Insira sua data de nascimento</h2>
+  <h2>Resolver Equação do 2º Grau</h2>
+  <label>a: <input type="number" id="a"></label><br>
+  <label>b: <input type="number" id="b"></label><br>
+  <label>c: <input type="number" id="c"></label><br>
+  <button onclick="resolver()">Resolver</button>
 
-    <input type="date" id="nascimento">
-    <button onclick="calcular()">Calcular</button>
+  <div class="resultado" id="resultado"></div>
 
-    <div id="resultado" style="margin-top: 15px; font-weight: bold;"></div>
+  <script>
+    function resolver() {
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const c = parseFloat(document.getElementById('c').value);
+      const res = document.getElementById('resultado');
 
-    <script>
-        function calcular() {
-            const dataNascimento = new Date(document.getElementById('nascimento').value);
-            
-            if (isNaN(dataNascimento.getTime())) {
-                alert("Por favor, insira uma data válida!");
-                return;
-            }
-            
-            const hoje = new Date();
-            
-            let idade = hoje.getFullYear() - dataNascimento.getFullYear();
-            
-            const mesAtual = hoje.getMonth();
-            const mesNascimento = dataNascimento.getMonth();
-            
-            if (mesNascimento > mesAtual || 
-                (mesNascimento === mesAtual && hoje.getDate() < dataNascimento.getDate())) {
-                idade--;
-            }
-            
-            const ano2050 = 2050;
-            const idade2050 = ano2050 - dataNascimento.getFullYear();
-            
-            document.getElementById('resultado').innerHTML = 
-                `Sua idade atual é: ${idade} anos<br>
-                 Em 2050 você terá: ${idade2050} anos`;
+      if (a === 0 && b === 0 && c === 0) {
+        res.textContent = "Igualdade confirmada: 0 = 0.";
+      } else if (a === 0 && b === 0 && c !== 0) {
+        res.textContent = "Coeficientes informados incorretamente.";
+      } else if (a === 0 && b !== 0) {
+        const x = -c / b;
+        res.textContent = `Esta é uma equação de primeiro grau: x = ${x.toFixed(2)}.`;
+      } else {
+        const delta = b * b - 4 * a * c;
+        let mensagem = "Esta é uma equação de segundo grau. ";
+
+        if (delta < 0) {
+          mensagem += `Esta equação não possui raízes reais (delta < 0): delta = ${delta}.`;
+        } else if (delta === 0) {
+          const x = -b / (2 * a);
+          mensagem += `Esta equação possui duas raízes reais iguais: x' = x'' = ${x.toFixed(2)}.`;
+        } else {
+          const raizDelta = Math.sqrt(delta);
+          const x1 = (-b + raizDelta) / (2 * a);
+          const x2 = (-b - raizDelta) / (2 * a);
+          mensagem += `Esta equação possui duas raízes reais diferentes: delta = ${delta}, x' = ${x1.toFixed(2)}, x'' = ${x2.toFixed(2)}.`;
         }
-    </script>
-</body>
 
+        res.textContent = mensagem;
+      }
+    }
+  </script>
+</body>
 </html>
